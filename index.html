@@ -59,6 +59,9 @@
                 </div>
             </div>
 
+            <!-- Pause Button -->
+            <button id="pause-btn" class="pause-btn hidden" title="Pausar Simulación">⏸</button>
+
             <!-- Elementos originales del juego -->
             <p id="chrono">Time goes by 00:00</p>
             <div id="gameplay"></div>
@@ -131,30 +134,8 @@ function updateGame() {
     <!-- Script Original -->
     <script src="js/iftysquare.js"></script>
 
-    <!-- Script de Control de Inicio (Intercepta el juego original) -->
-    <script>
-        // Guardar la referencia original por si acaso, aunque no la usaremos directamente al inicio
-        // El script js/iftysquare.js asigna: window.onload = startGame;
-        // Lo sobrescribimos inmediatamente para evitar que arranque solo.
-
-        window.onload = function () {
-            console.log("Juego pausado. Esperando al usuario.");
-            const startScreen = document.getElementById('game-start-screen');
-            const startBtn = document.getElementById('btn-start-game');
-
-            startBtn.addEventListener('click', function () {
-                // Ocultar pantalla de inicio
-                startScreen.style.display = 'none';
-
-                // Iniciar el juego manualmente llamando a la función global original
-                if (typeof startGame === 'function') {
-                    startGame();
-                } else {
-                    console.error("No se encontró la función startGame del juego original.");
-                }
-            });
-        };
-    </script>
+    <!-- Script de Control de Inicio y Pausa (Separado) -->
+    <script src="js/ui-controls.js"></script>
 </body>
 
 </html>
