@@ -29,10 +29,30 @@ class MatchGame {
         window.addEventListener('mouseup', this.handleMouseUp);
     }
 
-    init(speedMultiplier) {
+    init(speedMultiplier, difficulty) {
         this.ignited = false;
         this.flameSize = 0;
         this.frictionDistance = 0;
+        this.difficulty = difficulty || { tier: 'NORMAL' };
+
+        // Config based on Difficulty
+        let stripWidth = 300;
+        let stripHeight = 60; // Default height
+        this.frictionThreshold = 500;
+        this.duration = 5000; // Time limit
+
+        if (this.difficulty.tier === 'EASY') {
+            stripWidth = 450;       // Wider target
+            stripHeight = 120;      // Much taller (easier to hit)
+            this.frictionThreshold = 300;
+            this.duration = 5000;
+        } else if (this.difficulty.tier === 'NORMAL') {
+            stripHeight = 80;       // Slightly taller
+        } else if (this.difficulty.tier === 'HARD') {
+            stripWidth = 150;       // Tiny target
+            this.frictionThreshold = 800; // Harder to light
+            this.duration = 3000;   // Less time
+        }
 
         // Randomize Match Position
         this.match.x = this.canvas.width / 2;
@@ -40,8 +60,10 @@ class MatchGame {
         this.match.angle = Math.random() * 0.5 - 0.25; // Slight tilt
 
         // Place Strip
-        this.strip.x = this.canvas.width / 2 - 150;
-        this.strip.y = this.canvas.height / 2 - 30;
+        this.strip.width = stripWidth;
+        this.strip.height = stripHeight;
+        this.strip.x = this.canvas.width / 2 - stripWidth / 2;
+        this.strip.y = this.canvas.height / 2 - stripHeight / 2;
 
         this.speedMultiplier = speedMultiplier;
     }
@@ -101,7 +123,7 @@ class MatchGame {
             // Inside Striker
             if (this.velocity > 15) { // Fast movement needed
                 this.frictionDistance += this.velocity;
-                if (this.frictionDistance > 500) { // Accumulated drag distance
+                if (this.frictionDistance > this.frictionThreshold) { // Accumulated drag distance
                     this.ignite();
                 }
             }

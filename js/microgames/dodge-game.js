@@ -19,10 +19,19 @@ class DodgeGame {
         window.addEventListener('mousemove', this.handleMouseMove);
     }
 
-    init(speedMultiplier) {
+    init(speedMultiplier, difficulty) {
         this.speedMultiplier = speedMultiplier;
         this.projectiles = [];
         this.spawnTimer = 0;
+        this.gameTime = 0;
+
+        // Difficulty Settings
+        this.difficulty = difficulty || { tier: 'NORMAL' };
+
+        // Duration based on difficulty (Easy=Short to survive, Hard=Long)
+        if (this.difficulty.tier === 'EASY') this.duration = 3000;
+        else if (this.difficulty.tier === 'HARD') this.duration = 7000;
+        else this.duration = 5000;
 
         // Center Ship
         this.ship.x = this.canvas.width / 2;
@@ -38,8 +47,9 @@ class DodgeGame {
     }
 
     update(dt) {
-        // Update Ship Position (Follow Mouse with slight lag or direct?)
-        // Direct for responsiveness in microgames
+        this.gameTime += dt;
+
+        // Update Ship Position
         this.ship.x = this.mouseX;
         this.ship.y = this.mouseY;
 
@@ -47,11 +57,35 @@ class DodgeGame {
         this.ship.x = Math.max(this.ship.size / 2, Math.min(this.canvas.width - this.ship.size / 2, this.ship.x));
         this.ship.y = Math.max(this.ship.size / 2, Math.min(this.canvas.height - this.ship.size / 2, this.ship.y));
 
-        // Spawn Projectiles
-        this.spawnTimer -= dt;
-        if (this.spawnTimer <= 0) {
-            this.spawnProjectile();
-            this.spawnTimer = 200 / this.speedMultiplier; // Spawn rate increases with speed
+        // Spawn Projectiles Management
+        // 1. Warm-up Period
+        let WARM_UP = 1000;
+        if (this.difficulty.tier === 'HARD') WARM_UP = 500; // Less warm up on hard
+
+        if (this.gameTime > WARM_UP) {
+            this.spawnTimer -= dt;
+            if (this.spawnTimer <= 0) {
+                this.spawnProjectile();
+
+                // 2. Progressive Difficulty
+                const progress = Math.min(1.0, (this.gameTime - WARM_UP) / (this.duration - WARM_UP));
+
+                let startInterval = 600;
+                let endInterval = 100;
+
+                // Adjust rates based on difficulty
+                if (this.difficulty.tier === 'EASY') {
+                    startInterval = 800; // Slower start
+                    endInterval = 300;    // Not too fast at end
+                } else if (this.difficulty.tier === 'HARD') {
+                    startInterval = 400;  // Faster start
+                    endInterval = 50;     // Bullet hell at end
+                }
+
+                const currentInterval = startInterval - ((startInterval - endInterval) * progress);
+
+                this.spawnTimer = currentInterval / this.speedMultiplier;
+            }
         }
 
         // Update Projectiles
@@ -84,7 +118,7 @@ class DodgeGame {
             x: Math.random() * this.canvas.width,
             y: -50,
             radius: 20 + Math.random() * 20,
-            speed: (10 + Math.random() * 10) * this.speedMultiplier,
+            speed: (6 + Math.random() * 6) * this.speedMultiplier,
             color: '#FF0000'
         };
         this.projectiles.push(p);

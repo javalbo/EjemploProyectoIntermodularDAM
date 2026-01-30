@@ -77,12 +77,19 @@ class GameManager {
                 this.ui.levelText.innerText = `Puntuación: ${this.score}`;
                 this.ui.intermission.classList.remove('hidden');
 
-                // Wait 2 seconds then start random game
+                // Intermission Time based on difficulty (Score)
+                // < 10: Slow/Relaxed (3000ms)
+                // 10-20: Normal (2000ms)
+                // > 20: Fast (1000ms)
+                let waitTime = 2000;
+                if (this.score < 10) waitTime = 3000;
+                else if (this.score >= 20) waitTime = 1000;
+
                 setTimeout(() => {
                     if (this.currentState === STATE.INTERMISSION) {
                         this.startRandomMicrogame();
                     }
-                }, 2000);
+                }, waitTime);
                 break;
             case STATE.PLAYING:
                 this.ui.gameUI.style.display = 'block';
@@ -116,14 +123,30 @@ class GameManager {
     }
 
     startRandomMicrogame() {
-        // Pick random game (currently only one)
+        // Pick random game
         this.currentMicrogame = this.microgames[Math.floor(Math.random() * this.microgames.length)];
 
-        // Setup Game
-        this.currentMicrogame.init(this.speedMultiplier);
+        // Determine Difficulty config
+        let difficulty = {
+            tier: 'NORMAL',
+            multiplier: 1.0
+        };
 
-        // Setup Timer (e.g. 5 seconds / speed)
-        this.timerMax = 5000 / this.speedMultiplier;
+        if (this.score < 10) {
+            difficulty.tier = 'EASY';
+            difficulty.multiplier = 0.8;
+        } else if (this.score >= 20) {
+            difficulty.tier = 'HARD';
+            difficulty.multiplier = 1.5;
+        }
+
+        // Setup Game
+        this.currentMicrogame.init(this.speedMultiplier, difficulty);
+
+        // Setup Timer based on Game requirement (defaulting if not returned)
+        // Some games might determine their own duration based on difficulty
+        const requestedDuration = this.currentMicrogame.duration || 5000;
+        this.timerMax = requestedDuration / this.speedMultiplier;
         this.timerCurrent = this.timerMax;
 
         // Show Instruction
