@@ -1,15 +1,17 @@
 const GAME_AREA_WIDTH = 1920;
 const GAME_AREA_HEIGHT = 1080;
 const SQUARE_SIZE = 100;
-const SQUARE_COLOR = "#cc0000";
+const SQUARE_COLOR = "#00FFFF"; // Cyan/Blue for Clean Energy (Hero)
 const SQUARE_SPEED_X = 10;
 const SQUARE_SPEED_Y = 10;
 const ASTEROID_MIN_SPEED = 3;
 const ASTEROID_MAX_SPEED = 10;
 const BACKGROUND_SPEED = 0.1;
 const OBSTACLE_SPEED = 2;
-const OBSTACLE_COLOR = "#187440";
-const ASTEROID_COLOR = "#000000";
+const OBSTACLE_COLOR = "#FF0000"; // Red for Pollution (Obstacles)
+const ASTEROID_COLOR = "#CC0000"; // Darker Red for Asteroids
+const BACKGROUND_COLOR = "#1a1a1a"; // Dark Gray Background
+const TEXT_COLOR = "#FFFFFF";
 const OBSTACLE_MIN_HEIGHT = 40;
 const OBSTACLE_MAX_HEIGHT = GAME_AREA_HEIGHT - 100;
 const OBSTACLE_WIDTH = 20;
@@ -25,7 +27,7 @@ const LIFES_MSG = "STATUS: The ship ";
 const NOT_DAMAGED_MSG = "is not damaged.";
 const DAMAGED_MSG = "is DAMAGED.";
 const HARDLY_DAMAGED_MSG = "is SERIOUSLY DAMAGED.";
-const HAS_BEEN_DISTROYED_MSG = "has been distroyed.";
+const HAS_BEEN_DISTROYED_MSG = "has been destroyed.";
 const CHRONO_DEATH_MSG = "You died at   ";
 const RIGHTARROW_KEYCODE = 39;
 const LEFTARROW_KEYCODE = 37;
@@ -48,21 +50,18 @@ class SquaredForm {
         this.speedX = 0;
         this.speedY = 0;
         this.tag = tag;
+        this.type = type; // Keep type just in case logic depends on it, though simplified graphics might not need it
+        
         if (this.tag == TAG_HERO){
-            this.squareImage = new Image();
-            this.squareImage.src = 'imgs/nave.png';
             this.vidas = 3;
+            this.color = SQUARE_COLOR;
         }
         else if(this.tag == TAG_ASTEROID){
-            this.type = type;
-            this.squareImage = new Image();
-            if (type == 0) this.squareImage.src = 'imgs/asteroid1.png';
-            else if(type == 1) this.squareImage.src = 'imgs/asteroid2.png';
-            else this.squareImage.src = 'imgs/asteroid3.png';
+            this.color = ASTEROID_COLOR;
         }
         else if (this.tag == TAG_BACKGROUND) {
-            this.squareImage = new Image();
-            this.squareImage.src = 'imgs/background.png';
+            // Not used in this simplified version, but keeping for compatibility if logic calls it
+             this.color = BACKGROUND_COLOR; 
         }
         else this.color = color;
     }
@@ -76,9 +75,26 @@ class SquaredForm {
     }
 
     render(context) {
-        if (this.tag == TAG_HERO || this.tag == TAG_ASTEROID || this.tag == TAG_BACKGROUND) context.drawImage(this.squareImage, this.x, this.y, this.width, this.height)
-        else{
-            context.fillStyle = this.color;
+        context.fillStyle = this.color;
+        
+        if (this.tag == TAG_ASTEROID) {
+            // Draw circle for asteroid
+            context.beginPath();
+            let radius = this.width / 2;
+            context.arc(this.x + radius, this.y + radius, radius, 0, 2 * Math.PI);
+            context.fill();
+        } else if (this.tag == TAG_HERO) {
+            // Draw square for hero
+            context.globalAlpha = 0.9;
+            context.fillRect(this.x, this.y, this.width, this.height);
+            context.globalAlpha = 1.0;
+             // Add a simple outcome/inner border for detail
+            context.strokeStyle = "#FFFFFF";
+            context.lineWidth = 2;
+            context.strokeRect(this.x, this.y, this.width, this.height);
+
+        } else {
+            // Default rectangle for obstacles and others
             context.fillRect(this.x, this.y, this.width, this.height);
         }
     }
@@ -117,14 +133,11 @@ class GameArea {
         this.canvas = canvas;
         this.hero = hero;
         this.obstacles = obstacles;
-        this.backgrounds = backgrounds;
+        this.backgrounds = backgrounds; // We might not use this for scrolling anymore
         this.context = null;
         this.interval = null;
         this.frameBackgrounds = undefined;
         this.frameAsteroids = 0;
-
-        this.Image = new Image();
-        this.Image.src = 'imgs/background.png';
     }
 
     initialise() {
@@ -135,15 +148,18 @@ class GameArea {
         theDiv.appendChild(this.canvas);
         this.interval = setInterval(updateGame, GAME_SPEED/FPS);
         this.frameBackgrounds = 0;
-
-        let BACKGROUND = new SquaredForm(0, 0, GAME_AREA_WIDTH, GAME_AREA_HEIGHT, ASTEROID_COLOR, TAG_BACKGROUND, 0);
-        BACKGROUND.setSpeedX(-BACKGROUND_SPEED);
-        gameArea.addBackground(BACKGROUND);
+        
+        // No scrolling background initialization needed for solid color
     }
 
     render() {
-        
-        this.context.drawImage(this.Image, 0, 0, this.canvas.width, this.canvas.height);
+        // Clear with background color
+        this.context.fillStyle = BACKGROUND_COLOR;
+        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // We can skip rendering backgrounds if we want a static color, 
+        // or keep it if we decide to add simple stars later. 
+        // For now, let's assume backgrounds array is empty or unused for main bg.
         for (const background of this.backgrounds) {
             background.render(this.context);
         }        
@@ -152,9 +168,17 @@ class GameArea {
             obstacle.render(this.context);
         }
         if (!continueTime){
-            this.endImage = new Image();
-            this.endImage.src = 'imgs/END.png';
-            this.context.drawImage(this.endImage, 0, 0, this.canvas.width, this.canvas.height);
+            // Draw Game Over Text
+            this.context.fillStyle = "rgba(0, 0, 0, 0.7)";
+            this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            
+            this.context.fillStyle = "#FFFFFF";
+            this.context.font = "bold 80px Arial";
+            this.context.textAlign = "center";
+            this.context.fillText("GAME OVER", this.canvas.width/2, this.canvas.height/2);
+            
+            this.context.font = "30px Arial";
+            this.context.fillText("Presiona F5 para reiniciar", this.canvas.width/2, this.canvas.height/2 + 60);
         }
     }
 
@@ -277,13 +301,10 @@ function updateGame() {
         // Increase count of frames
         gameArea.frameAsteroids += 1;
         gameArea.frameBackgrounds += 1;
-        // Let's see if new obstacles must be created
-        if (gameArea.frameBackgrounds >= 18000) gameArea.frameBackgrounds = 1;
-        if (gameArea.frameBackgrounds == 1) {
-            let BACKGROUND = new SquaredForm(gameArea.canvas.width, 0, GAME_AREA_WIDTH, GAME_AREA_HEIGHT, ASTEROID_COLOR, TAG_BACKGROUND, 0);
-            BACKGROUND.setSpeedX(-BACKGROUND_SPEED);
-            gameArea.addBackground(BACKGROUND);
-        }
+        
+        // Removed Background Image scrolling logic
+        // We could implement simple star scrolling here if desired, but kept simple for now
+        
         if (gameArea.frameAsteroids >= FRAME_ASTEROID) gameArea.frameAsteroids = 1;
         if (gameArea.frameAsteroids == 1) {
             let chance = Math.random();
