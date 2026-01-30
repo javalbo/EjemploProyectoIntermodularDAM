@@ -2,7 +2,7 @@ const GAME_AREA_WIDTH = 1920;
 const GAME_AREA_HEIGHT = 1080;
 const SQUARE_SIZE = 100;
 const SQUARE_COLOR = "#00FFFF"; // Cyan/Blue for Clean Energy (Hero)
-const SQUARE_SPEED_X = 10;
+const SQUARE_SPEED_X = 15; // Increased speed slightly for better dodging
 const SQUARE_SPEED_Y = 10;
 const ASTEROID_MIN_SPEED = 3;
 const ASTEROID_MAX_SPEED = 10;
@@ -51,17 +51,17 @@ class SquaredForm {
         this.speedY = 0;
         this.tag = tag;
         this.type = type; // Keep type just in case logic depends on it, though simplified graphics might not need it
-        
-        if (this.tag == TAG_HERO){
+
+        if (this.tag == TAG_HERO) {
             this.vidas = 3;
             this.color = SQUARE_COLOR;
         }
-        else if(this.tag == TAG_ASTEROID){
+        else if (this.tag == TAG_ASTEROID) {
             this.color = ASTEROID_COLOR;
         }
         else if (this.tag == TAG_BACKGROUND) {
             // Not used in this simplified version, but keeping for compatibility if logic calls it
-             this.color = BACKGROUND_COLOR; 
+            this.color = BACKGROUND_COLOR;
         }
         else this.color = color;
     }
@@ -76,7 +76,7 @@ class SquaredForm {
 
     render(context) {
         context.fillStyle = this.color;
-        
+
         if (this.tag == TAG_ASTEROID) {
             // Draw circle for asteroid
             context.beginPath();
@@ -88,7 +88,7 @@ class SquaredForm {
             context.globalAlpha = 0.9;
             context.fillRect(this.x, this.y, this.width, this.height);
             context.globalAlpha = 1.0;
-             // Add a simple outcome/inner border for detail
+            // Add a simple outcome/inner border for detail
             context.strokeStyle = "#FFFFFF";
             context.lineWidth = 2;
             context.strokeRect(this.x, this.y, this.width, this.height);
@@ -106,6 +106,7 @@ class SquaredForm {
 
     setIntoArea(endX, endY) {
         this.x = Math.min(Math.max(0, this.x), (endX - this.width));
+        // Hero is vertically constrained, but we still ensure clamps if it tries to move
         this.y = Math.min(Math.max(0, this.y), (endY - this.height));
     }
 
@@ -146,9 +147,9 @@ class GameArea {
         this.context = this.canvas.getContext("2d");
         let theDiv = document.getElementById("gameplay");
         theDiv.appendChild(this.canvas);
-        this.interval = setInterval(updateGame, GAME_SPEED/FPS);
+        this.interval = setInterval(updateGame, GAME_SPEED / FPS);
         this.frameBackgrounds = 0;
-        
+
         // No scrolling background initialization needed for solid color
     }
 
@@ -162,23 +163,23 @@ class GameArea {
         // For now, let's assume backgrounds array is empty or unused for main bg.
         for (const background of this.backgrounds) {
             background.render(this.context);
-        }        
+        }
         this.hero.render(this.context);
         for (const obstacle of this.obstacles) {
             obstacle.render(this.context);
         }
-        if (!continueTime){
+        if (!continueTime) {
             // Draw Game Over Text
             this.context.fillStyle = "rgba(0, 0, 0, 0.7)";
             this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
-            
+
             this.context.fillStyle = "#FFFFFF";
             this.context.font = "bold 80px Arial";
             this.context.textAlign = "center";
-            this.context.fillText("GAME OVER", this.canvas.width/2, this.canvas.height/2);
-            
+            this.context.fillText("GAME OVER", this.canvas.width / 2, this.canvas.height / 2);
+
             this.context.font = "30px Arial";
-            this.context.fillText("Presiona F5 para reiniciar", this.canvas.width/2, this.canvas.height/2 + 60);
+            this.context.fillText("Presiona F5 para reiniciar", this.canvas.width / 2, this.canvas.height / 2 + 60);
         }
     }
 
@@ -203,8 +204,16 @@ class GameArea {
     }
 }
 
-let theSquare = new SquaredForm(0, GAME_AREA_HEIGHT / 2, SQUARE_SIZE, SQUARE_SIZE,
-    SQUARE_COLOR, TAG_HERO);
+// Hero starts at Bottom Center. 
+// X = (Width/2) - (Size/2)
+// Y = Height - Size - 20 (Margin from bottom)
+let theSquare = new SquaredForm(
+    (GAME_AREA_WIDTH / 2) - (SQUARE_SIZE / 2),
+    GAME_AREA_HEIGHT - SQUARE_SIZE - 20,
+    SQUARE_SIZE, SQUARE_SIZE,
+    SQUARE_COLOR, TAG_HERO
+);
+
 let rightArrowPressed = false,
     leftArrowPressed = false,
     upArrowPressed = false,
@@ -230,18 +239,19 @@ function handlerOne(event) {
                 theSquare.setSpeedX(-SQUARE_SPEED_X);
             }
             break;
-        case UPARROW_KEYCODE:
-            if (!upArrowPressed) {
-                upArrowPressed = true;
-                theSquare.setSpeedY(-SQUARE_SPEED_Y);
-            }
-            break;
-        case DOWNARROW_KEYCODE:
-            if (!downArrowPressed) {
-                downArrowPressed = true;
-                theSquare.setSpeedY(SQUARE_SPEED_Y);
-            }
-            break;
+        // DISABLED UPARROW AND DOWNARROW for Vertical Shooter
+        // case UPARROW_KEYCODE:
+        //     if (!upArrowPressed) {
+        //         upArrowPressed = true;
+        //         theSquare.setSpeedY(-SQUARE_SPEED_Y);
+        //     }
+        //     break;
+        // case DOWNARROW_KEYCODE:
+        //     if (!downArrowPressed) {
+        //         downArrowPressed = true;
+        //         theSquare.setSpeedY(SQUARE_SPEED_Y);
+        //     }
+        //     break;
         default:
             break;
     }
@@ -257,14 +267,15 @@ function handlerTwo(event) {
             leftArrowPressed = false;
             theSquare.setSpeedX(0);
             break;
-        case UPARROW_KEYCODE:
-            upArrowPressed = false;
-            theSquare.setSpeedY(0);
-            break;
-        case DOWNARROW_KEYCODE:
-            downArrowPressed = false;
-            theSquare.setSpeedY(0);
-            break;
+        // DISABLED UPARROW AND DOWNARROW for Vertical Shooter
+        // case UPARROW_KEYCODE:
+        //     upArrowPressed = false;
+        //     theSquare.setSpeedY(0);
+        //     break;
+        // case DOWNARROW_KEYCODE:
+        //     downArrowPressed = false;
+        //     theSquare.setSpeedY(0);
+        //     break;
         default:
             break;
     }
@@ -287,60 +298,67 @@ function updateGame() {
     // Check collision for ending game
     let collision = false;
     let asteroid_size;
-    for (let i = 0; i < gameArea.obstacles.length; i++) {        
+    for (let i = 0; i < gameArea.obstacles.length; i++) {
         if (theSquare.crashWith(gameArea.obstacles[i])) {
-            if (gameArea.obstacles[i].width > 30){
+            if (gameArea.obstacles[i].width > 30) {
                 collision = true;
                 asteroid_size = gameArea.obstacles[i].width;
                 if (asteroid_size < SQUARE_SIZE - 20) gameArea.removeObstacle(i);
                 break;
-            }            
+            }
         }
     }
-        if (collision) subLife(asteroid_size);
-        // Increase count of frames
-        gameArea.frameAsteroids += 1;
-        gameArea.frameBackgrounds += 1;
-        
-        // Removed Background Image scrolling logic
-        // We could implement simple star scrolling here if desired, but kept simple for now
-        
-        if (gameArea.frameAsteroids >= FRAME_ASTEROID) gameArea.frameAsteroids = 1;
-        if (gameArea.frameAsteroids == 1) {
-            let chance = Math.random();
-            if (chance < PROBABILITY_ASTEROID) {
-                if (ASTEROID_TYPE == 0) ASTEROID_TYPE = 1;
-                else if (ASTEROID_TYPE == 1) ASTEROID_TYPE = 2;
-                else ASTEROID_TYPE = 0;
-                let size = Math.floor(Math.random() * (ASTEROID_MAX_SIZE - ASTEROID_MIN_SIZE + 1) + ASTEROID_MIN_SIZE);
-                let ASTEROID_Y = Math.floor(Math.random() * (GAME_AREA_HEIGHT + 1));
-                let ASTEROID = new SquaredForm(gameArea.canvas.width, ASTEROID_Y, size, size, ASTEROID_COLOR, TAG_ASTEROID, ASTEROID_TYPE);
-                let ASTEROID_SPEED = Math.floor(Math.random() * (ASTEROID_MAX_SPEED - ASTEROID_MIN_SPEED + 1) + ASTEROID_MIN_SPEED);
-                ASTEROID.setSpeedX(-ASTEROID_SPEED);
-                gameArea.addObstacle(ASTEROID);
-            }
-        }
-        // Move backgrounds and delete the ones that goes outside the canvas
-        for (let i = gameArea.backgrounds.length - 1; i >= 0; i--) {
-            gameArea.backgrounds[i].move();
-            if (gameArea.backgrounds[i].x == GAME_AREA_WIDTH*2) {
-                gameArea.removeBackground(i);
-            }
-        }
-        // Move obstacles and delete the ones that goes outside the canvas
-        for (let i = gameArea.obstacles.length - 1; i >= 0; i--) {
-            gameArea.obstacles[i].move();
-            if (gameArea.obstacles[i].x + ASTEROID_MAX_SIZE <= 0) {
-                gameArea.removeObstacle(i);
-            }
-        }
+    if (collision) subLife(asteroid_size);
+    // Increase count of frames
+    gameArea.frameAsteroids += 1;
+    gameArea.frameBackgrounds += 1;
 
-        // Move our hero
-        theSquare.move();
-        // Our hero can't go outside the canvas
-        theSquare.setIntoArea(gameArea.canvas.width, gameArea.canvas.height);
-        gameArea.clear();
-        gameArea.render();
+    if (gameArea.frameAsteroids >= FRAME_ASTEROID) gameArea.frameAsteroids = 1;
+    if (gameArea.frameAsteroids == 1) {
+        let chance = Math.random();
+        if (chance < PROBABILITY_ASTEROID) {
+            if (ASTEROID_TYPE == 0) ASTEROID_TYPE = 1;
+            else if (ASTEROID_TYPE == 1) ASTEROID_TYPE = 2;
+            else ASTEROID_TYPE = 0;
+
+            let size = Math.floor(Math.random() * (ASTEROID_MAX_SIZE - ASTEROID_MIN_SIZE + 1) + ASTEROID_MIN_SIZE);
+
+            // VERTICAL SPAWN: Spawn at Top (Y ~= -size), Random X
+            let ASTEROID_X = Math.floor(Math.random() * (GAME_AREA_WIDTH + 1));
+            let ASTEROID_Y = -size - 10; // Start slightly above screen
+
+            let ASTEROID = new SquaredForm(ASTEROID_X, ASTEROID_Y, size, size, ASTEROID_COLOR, TAG_ASTEROID, ASTEROID_TYPE);
+
+            // SPEED: Positive Y (Downwards), X=0
+            let ASTEROID_SPEED = Math.floor(Math.random() * (ASTEROID_MAX_SPEED - ASTEROID_MIN_SPEED + 1) + ASTEROID_MIN_SPEED);
+            ASTEROID.setSpeedY(ASTEROID_SPEED);
+            ASTEROID.setSpeedX(0); // Optional: could render drift if wanted
+
+            gameArea.addObstacle(ASTEROID);
+        }
+    }
+
+    // Move backgrounds (unused/simplified)
+    for (let i = gameArea.backgrounds.length - 1; i >= 0; i--) {
+        gameArea.backgrounds[i].move();
+        // Optional: Background scrolling logic if re-enabled
+    }
+
+    // Move obstacles and delete the ones that goes outside the canvas (BOTTOM)
+    for (let i = gameArea.obstacles.length - 1; i >= 0; i--) {
+        gameArea.obstacles[i].move();
+        // Check if passed BOTTOM of screen (Y > HEIGHT)
+        if (gameArea.obstacles[i].y > GAME_AREA_HEIGHT) {
+            gameArea.removeObstacle(i);
+        }
+    }
+
+    // Move our hero
+    theSquare.move();
+    // Our hero can't go outside the canvas
+    theSquare.setIntoArea(gameArea.canvas.width, gameArea.canvas.height);
+    gameArea.clear();
+    gameArea.render();
 }
 
 function updateChrono() {
@@ -362,22 +380,25 @@ function subTime() {
     if ((seconds - 15) < 0) seconds = 0;
     else seconds = seconds - 15;
     let minutes = Math.floor(seconds / 60);
-        let secondsToShow = seconds % 60;
-        theChrono.innerHTML = CHRONO_MSG + " " + String(minutes).padStart(2, "0") + ":" + String(secondsToShow).padStart(2, "0");
+    let secondsToShow = seconds % 60;
+    theChrono.innerHTML = CHRONO_MSG + " " + String(minutes).padStart(2, "0") + ":" + String(secondsToShow).padStart(2, "0");
 }
 
-function subLife(asteroid_size){
-    if (gameArea.hero.vidas - 1 <= 0){
+function subLife(asteroid_size) {
+    if (gameArea.hero.vidas - 1 <= 0) {
         gameArea.hero.vidas = 0;
         endGame();
-    } 
+    }
     else {
-        gameArea.hero.vidas--;        
+        gameArea.hero.vidas--;
         if (leftArrowPressed) {
             gameArea.hero.vidas = 0;
             endGame();
         }
-        if (asteroid_size >= SQUARE_SIZE - 20) gameArea.hero.x = gameArea.hero.x + asteroid_size + SQUARE_SIZE + 1;
+        // Push hero away on hit - Adjusted for vertical might need X push? 
+        // For now, let's keep it simple or just invincible frames. 
+        // The original code pushed X. Let's push X if hit? 
+        // Actually, let's just leave the position alone to avoid glitching out of bounds easily.
     }
     if (gameArea.hero.vidas == 3) theLife.innerHTML = LIFES_MSG + NOT_DAMAGED_MSG;
     else if (gameArea.hero.vidas == 2) theLife.innerHTML = LIFES_MSG + DAMAGED_MSG;
@@ -389,7 +410,7 @@ function endGame() {
     continueTime = false;
     PROBABILITY_ASTEROID = 1;
     FRAME_ASTEROID = 1;
-    
+
     window.document.removeEventListener("keydown", handlerOne);
     window.document.removeEventListener("keyup", handlerTwo);
     gameArea.hero.speedX = 0;
