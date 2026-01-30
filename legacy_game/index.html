@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Infinity Square - ODS 7 Edition</title>
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;600;800&family=Press+Start+2P&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos: Game original + Main Site Styles -->
+    <link rel="stylesheet" href="css/iftysquare.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="logo">INFINITY ENERGY</div>
+        <ul class="nav-links">
+            <li><a href="#intro">Misión</a></li>
+            <li><a href="#game">Jugar</a></li>
+            <li><a href="#docs">Documentación</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sección Introducción -->
+    <section id="intro" class="hero-section">
+        <div class="container">
+            <h1>ODS 7: La Energía del Futuro</h1>
+            <p class="subtitle">Evita el colapso energético. Mantén el núcleo estable.</p>
+            <p class="description">
+                En <strong>Infinity Square</strong>, pilotas una nave de energía pura.
+                Tu misión es sobrevivir el mayor tiempo posible a los obstáculos de la contaminación y la ineficiencia.
+                <br>Inspírate en el Objetivo de Desarrollo Sostenible 7: Garantizar el acceso a una energía asequible,
+                segura, sostenible y moderna.
+            </p>
+            <a href="#game" class="btn-primary">INICIAR SIMULACIÓN</a>
+        </div>
+    </section>
+
+    <!-- Sección Juego (Wrapper para el código original) -->
+    <section id="game" class="game-section">
+        <div class="game-wrapper">
+            <!-- Start Screen Overlay -->
+            <div id="game-start-screen">
+                <div class="start-content">
+                    <h2>Misión: Estabilidad Energética</h2>
+                    <p>Protege el núcleo de energía de la contaminación.</p>
+                    <p>Usa las <strong>FLECHAS</strong> para moverte.</p>
+                    <button id="btn-start-game" class="btn-primary">CONECTAR NÚCLEO</button>
+                    <p class="warning">⚠️ PELIGRO: Evita los bloques rojos</p>
+                </div>
+            </div>
+
+            <!-- Pause Button -->
+            <button id="pause-btn" class="pause-btn hidden" title="Pausar Simulación">⏸</button>
+
+            <!-- Elementos originales del juego -->
+            <p id="chrono">Time goes by 00:00</p>
+            <div id="gameplay"></div>
+            <p id="life">STATUS: The ship is not damaged.</p>
+        </div>
+
+        <div class="controls-hint">
+            <p>Usa las <strong>FLECHAS</strong> para moverte. Esquiva los cuadros rojos (energía sucia).</p>
+        </div>
+    </section>
+
+    <!-- Sección Documentación -->
+    <section id="docs" class="docs-section">
+        <div class="container">
+            <h2>Documentación del Proyecto</h2>
+
+            <div class="docs-grid">
+                <article class="doc-card">
+                    <h3>📖 Concepto Educativo</h3>
+                    <p>
+                        Este videojuego web ilustra la necesidad de resiliencia y gestión de recursos (el tiempo y la
+                        integridad de la nave)
+                        como metáfora de la gestión energética sostenible. La dificultad creciente representa el desafío
+                        de mantener la estabilidad energética global.
+                    </p>
+                </article>
+
+                <article class="doc-card">
+                    <h3>🛠️ Tecnologías</h3>
+                    <ul>
+                        <li><strong>HTML5 Canvas:</strong> Motor gráfico ligero y nativo.</li>
+                        <li><strong>JavaScript Puro:</strong> Lógica de colisiones, temporizador y renderizado sin
+                            frameworks.</li>
+                        <li><strong>CSS3:</strong> Estilizado "Dark Mode" para bajo consumo visual.</li>
+                    </ul>
+                </article>
+
+                <article class="doc-card">
+                    <h3>🚀 SCRUM & Agile</h3>
+                    <p>Desarrollo iterativo:</p>
+                    <ul class="scrum-list">
+                        <li><strong>Backlog:</strong> Crear canvas, lógica de movimiento, sistema de daño.</li>
+                        <li><strong>Sprint 1:</strong> Prototipo funcional (el cuadrado se mueve).</li>
+                        <li><strong>Sprint 2:</strong> Implementación de obstáculos y contador (MVP actual).</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="code-preview">
+                <h3>Snippet: Bucle del Juego</h3>
+                <pre><code>
+// Ejemplo de lógica (js/iftysquare.js)
+function updateGame() {
+    clearCanvas();
+    movePlayer();
+    drawObstacles();
+    checkCollisions();
+    requestAnimationFrame(updateGame);
+}
+                </code></pre>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Proyecto Didáctico - CFGS Desarrollo de Aplicaciones Multiplataforma</p>
+        <p>Inspirado en ODS 7: Energía Asequible y No Contaminante</p>
+    </footer>
+
+    <!-- Script Original -->
+    <script src="js/iftysquare.js"></script>
+
+    <!-- Script de Control de Inicio y Pausa (Separado) -->
+    <script src="js/ui-controls.js"></script>
+</body>
+
+</html>
