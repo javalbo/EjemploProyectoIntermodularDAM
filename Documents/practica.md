@@ -100,13 +100,13 @@ Cada microjuego debe cumplir los siguientes criterios:
 ### Microjuegos
 - Si el contador supera los 10 puntos, al enfrentar el mismo microjuego, el reto debe ser más difícil.
 - Al superar los 20 puntos, la dificultad debe volver a aumentar. 
-> Para aumentar la dificultad, por ejemplo, el vaso debe ser sensiblemente más grande, las gotas de agua más escasas o rápidas y el tiempo para recoger agua más corto.
+> Para aumentar la dificultad, por ejemplo, el vaso debe ser sensiblemente más profundo o estrecho, las gotas de agua más escasas o rápidas y el tiempo para recoger agua más corto.
 
 ---
 
 ### Temática del juego
 - Cada microjuego debe estar relacionado con uno o varios **Objetivos de Desarrollo Sostenible**.
-![](/imgs/ODS.jpg)
+![ODS](/imgs/ODS.jpg)
 
 ---
 
@@ -125,7 +125,7 @@ Cada microjuego debe cumplir los siguientes criterios:
   · **Asignarla en Trello** al integrante del grupo correspondiente y pasarla de la columna *backlog* a *in progress*.
   · **Crear una rama** con el esquema: "features/[nombre-de-la-tarea]"
   · Realizar los cambios necesarios.
-  · Deberían hacerse commits cada vez que se añadan cambios en la funcionalidad.
+  · **Hacer commit** cada vez que se añadan *cambios significativos* en la funcionalidad.
   · Al terminar la tarea, se debe mover a tarea a la columna *validate*.
   · Otro integrante debe validarla, comprobando que no haya problemas de funcionalidad tras hacer merge de *main* en la rama de desarrollo.
   · Una vez validada, se mergea la rama de desarrollo a *main* y se mueve la tarea a *done*.
@@ -152,3 +152,4 @@ Cada microjuego debe cumplir los siguientes criterios:
 - Ranking de puntuaciones.
 - Resultados compartidos.
 - Multijugador básico.
+- Crear elementos gráficos y añadirlos al juego. 
