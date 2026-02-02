@@ -122,20 +122,20 @@ Cada microjuego debe cumplir los siguientes criterios:
 
 ### Control de versiones
 - Al comenzar una tarea se debe:
-  -- Asignarla en Trello al integrante del grupo correspondiente y pasarla de la columna *backlog* a *in progress*.
-  -- Crear una rama con el esquema: "features/[nombre-de-la-tarea]"
-  -- Realizar los cambios necesarios.
-  -- Deberían hacerse commits cada vez que se añadan cambios en la funcionalidad.
-  -- Al terminar la tarea, se debe mover a tarea a la columna *validate*.
-  -- Otro integrante debe validarla, comprobando que no haya problemas de funcionalidad tras hacer merge de *main* en la rama de desarrollo.
-  -- Una vez validada, se mergea la rama de desarrollo a *main* y se mueve la tarea a *done*.
+  · **Asignarla en Trello** al integrante del grupo correspondiente y pasarla de la columna *backlog* a *in progress*.
+  · **Crear una rama** con el esquema: "features/[nombre-de-la-tarea]"
+  · Realizar los cambios necesarios.
+  · Deberían hacerse commits cada vez que se añadan cambios en la funcionalidad.
+  · Al terminar la tarea, se debe mover a tarea a la columna *validate*.
+  · Otro integrante debe validarla, comprobando que no haya problemas de funcionalidad tras hacer merge de *main* en la rama de desarrollo.
+  · Una vez validada, se mergea la rama de desarrollo a *main* y se mueve la tarea a *done*.
 
 ---
 
-### Planificación
-- Una tarea podría ser: *Implementar microjuego "¡No malgastes agua!"*
-- La rama en la que se desarrollará deberia llamarse "feartures/microjuego-no-malgastes-agua"
-- Un commit de dicha rama podria titularse "se añade dificultad media" y describirse como "ahora las gotas caen menos y más rápido a partir de los 10 puntos"
+### Ejemplo de planificación
+- Una **tarea** podría ser: *Implementar microjuego "¡No malgastes agua!"*
+- La **rama** en la que se desarrollará deberia llamarse "feartures/microjuego-no-malgastes-agua"
+- Un **commit** de dicha rama podria titularse "se añade dificultad media" y describirse como "ahora las gotas caen menos y más rápido a partir de los 10 puntos"
 
 ---
 
