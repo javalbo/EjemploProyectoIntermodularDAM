@@ -5,7 +5,7 @@ marp: true
 # Práctica: Desarrollo colaborativo de un videojuego web con metodologías ágiles
 
 ## Objetivo de la práctica
-Iniciar al alumnado en el desarrollo colaborativo de un proyecto software realista utilizando **GitHub como control de versiones**, **VS Code como entorno de desarrollo** y **Antigravity como asistente de generación de código**, aplicando una organización básica inspirada en **KANBAN**.
+Iniciar al alumnado en el desarrollo colaborativo de un proyecto software realista utilizando **GitHub como control de versiones**, **VS Code como entorno de desarrollo** y **Antigravity como asistente de generación de código**, aplicando una organización basada en el método **KANBAN**.
 
 ---
 
@@ -133,8 +133,3 @@ Ejemplo orientativo (no obligatorio):
 - Ranking de puntuaciones.
 - Resultados compartidos.
 - Multijugador básico.
-
----
-
-### Consideración final
-Este proyecto no tiene un único camino correcto. Se valorará especialmente la toma de decisiones en grupo, la resolución de problemas técnicos y la coherencia entre diseño, implementación y organización del trabajo.
