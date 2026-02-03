@@ -141,7 +141,7 @@ Cada microjuego debe cumplir los siguientes criterios:
 - Todo el proceso debe documentarse e incluir diferentes páginas web que expliquen cómo se ha hecho el proyecto
 - Ejemplos de documentación que debe incluirse:
   - Definición del proyecto
-  - Explicación de la mecánica de los minijuegos
+  - Explicación de la mecánica de los microjuegos
   - Explicación de la organización del trabajo, quién ha hecho cada tarea, quién la ha validado, etc
   - Incluir link a Trello y capturas de pantalla del mismo 
   
