@@ -4,203 +4,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microgame Madness</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;800&display=swap');
-
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: #222;
-            font-family: 'Inter', sans-serif;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        #game-container {
-            position: relative;
-            width: 1280px;
-            height: 720px;
-            background: #000;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            border: 4px solid #444;
-        }
-
-        canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* UI Overlays */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 10;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Typography */
-        h1 {
-            font-family: 'Press Start 2P', cursive;
-            color: #FFFF00;
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 24px;
-            color: #ccc;
-        }
-
-        .btn-primary {
-            background: #FF0055;
-            color: white;
-            border: none;
-            padding: 20px 40px;
-            font-size: 24px;
-            font-family: 'Press Start 2P', cursive;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: transform 0.1s;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            background: #ff3377;
-        }
-
-        /* In-Game UI */
-        #game-ui {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            /* Let clicks pass through to canvas */
-            display: none;
-        }
-
-        #timer-bar-container {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 30px;
-            background: #333;
-            border: 2px solid white;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        #timer-bar {
-            width: 100%;
-            height: 100%;
-            background: #FF0055;
-            /* Bomb fuse color */
-        }
-
-        #instruction-text {
-            position: absolute;
-            top: 20%;
-            width: 100%;
-            text-align: center;
-            font-size: 64px;
-            font-weight: 800;
-            text-transform: uppercase;
-            text-shadow: 4px 4px 0 #000;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes popIn {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        /* Lives Screen */
-        .heart {
-            color: #FF0055;
-            font-size: 64px;
-            margin: 0 10px;
-        }
-    </style>
+    <title>DEBUGPLANET: Microgames for sustainability</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;800&family=Cinzel:wght@700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <div id="game-container">
-        <canvas id="gameCanvas" width="1280" height="720"></canvas>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">DEBUGPLANET</div>
+        <ul class="nav-links">
+            <li><a href="#game-section">Jugar</a></li>
+            <li><a href="#docs">Documentación</a></li>
+            <li><a href="#memory">Memoria</a></li>
+        </ul>
+    </nav>
 
-        <!-- Main Menu -->
-        <div id="main-menu" class="overlay">
-            <h1>MICROGAME<br>MADNESS</h1>
-            <p>Sobrevive a la velocidad.</p>
-            <button id="btn-start" class="btn-primary">JUGAR</button>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>DEBUGPLANET<br><span style="color: white; font-size: 0.8em;">MICROGAMES FOR SUSTAINABILITY</span></h1>
+        <p class="subtitle">Salva el mundo, un minijuego a la vez.</p>
+        <button id="btn-landing-play" class="btn-primary">JUGAR AHORA</button>
+    </section>
 
-        <!-- Intermission / Lives Screen -->
-        <div id="intermission-screen" class="overlay hidden">
-            <h2 id="level-text">Nivel 1</h2>
-            <div id="lives-container">
-                <!-- Hearts go here -->
+    <!-- Game Section -->
+    <div id="game-section" class="game-section hidden">
+        <div id="game-container">
+            <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+            <!-- Main Menu (Internal Game Menu) -->
+            <div id="main-menu" class="overlay">
+                <h1>DEBUG<br>PLANET</h1>
+                <p>Sobrevive y Cumple los ODS</p>
+                <button id="btn-start" class="btn-primary">COMENZAR</button>
             </div>
-            <p>Prepárate...</p>
-        </div>
 
-        <!-- Game UI -->
-        <div id="game-ui">
-            <div id="instruction-text">¡ENCIENDE!</div>
-            <div id="timer-bar-container">
-                <div id="timer-bar"></div>
+            <!-- Intermission / Lives Screen -->
+            <div id="intermission-screen" class="overlay hidden">
+                <h2 id="level-text">Nivel 1</h2>
+                <div id="lives-container">
+                    <!-- Hearts go here -->
+                </div>
+                <p>Prepárate...</p>
             </div>
-        </div>
 
-        <!-- Result Overlay -->
-        <div id="result-overlay" class="overlay hidden" style="background: transparent;">
-            <h1 id="result-text" style="font-size: 80px; text-shadow: 5px 5px 0 #000;">WIN</h1>
-        </div>
+            <!-- Game UI -->
+            <div id="game-ui">
+                <div id="instruction-text">¡ENCIENDE!</div>
+                <div id="timer-bar-container">
+                    <div id="timer-bar"></div>
+                </div>
+            </div>
 
-        <!-- Game Over -->
-        <div id="game-over-screen" class="overlay hidden">
-            <h1>GAME OVER</h1>
-            <p id="final-score">Puntuación: 0</p>
-            <button id="btn-restart" class="btn-primary">REINTENTAR</button>
+            <!-- Result Overlay -->
+            <div id="result-overlay" class="overlay hidden" style="background: transparent;">
+                <h1 id="result-text" style="font-size: 80px; text-shadow: 5px 5px 0 #000;">WIN</h1>
+            </div>
+
+            <!-- Game Over -->
+            <div id="game-over-screen" class="overlay hidden">
+                <h1>GAME OVER</h1>
+                <p id="final-score">Puntuación: 0</p>
+                <button id="btn-restart" class="btn-primary">REINTENTAR</button>
+                <button id="btn-exit" class="btn-primary" style="background: #333; margin-top: 10px;">SALIR AL
+                    MENÚ</button>
+            </div>
         </div>
     </div>
 
+    <!-- Documentation Section (Ten Pages) -->
+    <section id="docs" class="docs-section">
+        <div class="container">
+            <h2>DOCUMENTO DE DISEÑO (TEN PAGES)</h2>
+
+            <div class="doc-card" style="margin-bottom: 2rem;">
+                <h3>1. Concepto y Filosofía</h3>
+                <p><strong>Título:</strong> DEBUGPLANET: Microgames for sustainability</p>
+                <p><strong>Género:</strong> Arcade / Party Game Educativo (Estilo WarioWare)</p>
+                <p><strong>Objetivo:</strong> Concienciar sobre los Objetivos de Desarrollo Sostenible (ODS) mediante
+                    mecánicas jugables rápidas y directas.</p>
+                <p><strong>Público Objetivo:</strong> Estudiantes y público general interesado en videojuegos casuales.
+                </p>
+            </div>
+
+            <div class="doc-card" style="margin-bottom: 2rem;">
+                <h3>2. Mecánicas de Juego</h3>
+                <ul>
+                    <li><strong>Bucle Principal:</strong> El jugador enfrenta una serie infinita de microjuegos. Cada
+                        juego dura un máximo de 8 segundos.</li>
+                    <li><strong>Sistema de Vidas:</strong> Se dispone de <strong>4 vidas</strong>. Fallar un microjuego
+                        o no completar el objetivo a tiempo resta una vida.</li>
+                    <li><strong>Puntuación y Dificultad:</strong>
+                        <ul>
+                            <li>Cada éxito suma 1 punto.</li>
+                            <li><strong>Nivel Fácil (0-9 puntos):</strong> Velocidad normal, objetivos reducidos.</li>
+                            <li><strong>Nivel Normal (10-19 puntos):</strong> Velocidad x1.2, objetivos estándar.</li>
+                            <li><strong>Nivel Difícil (20+ puntos):</strong> Velocidad x1.5, objetivos máximos.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <h3>3. Detalle de Microjuegos</h3>
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <h3>ODS 6: Agua Limpia</h3>
+                    <p><strong>Objetivo:</strong> Recoger gotas de lluvia en un cubo para evitar el desperdicio.</p>
+                    <p><strong>Control:</strong> Movimiento del ratón (eje X).</p>
+                    <p><strong>Progresión:</strong></p>
+                    <ul>
+                        <li>Fácil: Recoger 1 gota.</li>
+                        <li>Normal: Recoger 2 gotas.</li>
+                        <li>Difícil: Recoger 3 gotas.</li>
+                    </ul>
+                    <p><em>Condición de Derrota:</em> No llenar el cubo antes de 8s.</p>
+                </div>
+                <div class="doc-card">
+                    <h3>ODS 7: Energía Asequible</h3>
+                    <p><strong>Objetivo:</strong> Limpiar la suciedad de un panel solar para maximizar su eficiencia.
+                    </p>
+                    <p><strong>Control:</strong> Movimiento libre del ratón.</p>
+                    <p><strong>Progresión:</strong></p>
+                    <ul>
+                        <li>Fácil: 2 manchas.</li>
+                        <li>Normal: 4 manchas.</li>
+                        <li>Difícil: 5 manchas dispersas.</li>
+                    </ul>
+                    <p><em>Condición de Derrota:</em> Dejar manchas al acabar el tiempo.</p>
+                </div>
+                <div class="doc-card">
+                    <h3>ODS 15: Vida Terrestre</h3>
+                    <p><strong>Objetivo:</strong> Reforestar zonas áridas plantando árboles en agujeros vacíos.</p>
+                    <p><strong>Control:</strong> Clic izquierdo.</p>
+                    <p><strong>Progresión:</strong></p>
+                    <ul>
+                        <li>Fácil: Plantar 2 árboles.</li>
+                        <li>Normal: Plantar 4 árboles.</li>
+                        <li>Difícil: Plantar 5 árboles.</li>
+                    </ul>
+                    <p><em>Condición de Derrota:</em> Dejar huecos sin plantar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Memory Section -->
+    <section id="memory" style="background-color: #111;">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--secondary-color); font-family: var(--font-heading);">DIARIO DE
+                DESARROLLO</h2>
+
+            <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 900px; margin: 0 auto;">
+
+                <div class="doc-card" style="border-left: 5px solid #2979FF;">
+                    <h3>Gestión del Proyecto</h3>
+                    <p>Todo el avance, tareas pendientes y bugs se gestionan a través de nuestro tablero Kanban.</p>
+                    <a href="https://trello.com/b/example" target="_blank" class="btn-primary"
+                        style="display: inline-block; margin-top: 1rem; text-decoration: none; padding: 0.5rem 1rem; font-size: 0.8rem;">VER
+                        TABLERO DE TRELLO</a>
+                </div>
+
+                <div class="doc-card">
+                    <h3>Día 1: Planificación y Setup (03/02/2026)</h3>
+                    <p><strong>Tareas Realizadas:</strong></p>
+                    <ul>
+                        <li><span style="color: #00E676;">[Gestión]</span> Creación del repositorio en GitHub e
+                            invitación a colaboradores.
+                            <br><small style="color: #888;"><em>Asignado: Alejandro | Validado: Carlos | Rama:
+                                    main</em></small>
+                        </li>
+                        <li><span style="color: #00E676;">[Gestión]</span> Configuración del tablero Kanban en Trello.
+                            <br><small style="color: #888;"><em>Asignado: Beatriz | Validado: Alejandro | Rama:
+                                    management/setup</em></small>
+                        </li>
+                        <li><span style="color: #2979FF;">[Diseño]</span> Redacción del documento inicial de requisitos.
+                            <br><small style="color: #888;"><em>Asignado: Beatriz | Validado: Carlos | Rama:
+                                    docs/initial-requirements</em></small>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="doc-card">
+                    <h3>Día 2: Motor del Juego y Estructura (04/02/2026)</h3>
+                    <p><strong>Tareas Realizadas:</strong></p>
+                    <ul>
+                        <li><span style="color: #FF0055;">[Dev]</span> Implementación del bucle principal del juego.
+                            <br><small style="color: #888;"><em>Asignado: Alejandro | Validado: Beatriz | Rama:
+                                    features/core-loop</em></small>
+                        </li>
+                        <li><span style="color: #FF0055;">[Dev]</span> Creación del sistema de escenas.
+                            <br><small style="color: #888;"><em>Asignado: Alejandro | Validado: Carlos | Rama:
+                                    features/scene-manager</em></small>
+                        </li>
+                        <li><span style="color: #FF0055;">[Dev]</span> Implementación del temporizador y UI base.
+                            <br><small style="color: #888;"><em>Asignado: Carlos | Validado: Alejandro | Rama:
+                                    features/ui-hud</em></small>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="doc-card">
+                    <h3>Día 3: Microjuegos ODS 6 y 7 (05/02/2026)</h3>
+                    <p><strong>Tareas Realizadas:</strong></p>
+                    <ul>
+                        <li><span style="color: #FF0055;">[Dev]</span> Desarrollo del microjuego <strong>"Water
+                                Game"</strong>.
+                            <br><small style="color: #888;"><em>Asignado: Beatriz | Validado: Alejandro | Rama:
+                                    features/microgame-water</em></small>
+                        </li>
+                        <li><span style="color: #FF0055;">[Dev]</span> Desarrollo del microjuego <strong>"Solar
+                                Game"</strong>.
+                            <br><small style="color: #888;"><em>Asignado: Carlos | Validado: Beatriz | Rama:
+                                    features/microgame-solar</em></small>
+                        </li>
+                        <li><span style="color: #00E676;">[QA]</span> Pruebas de jugabilidad iniciales: Ajuste de
+                            colisiones.
+                            <br><small style="color: #888;"><em>Asignado: Alejandro | Validado: Beatriz | Rama:
+                                    bugs/collision-fix</em></small>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="doc-card">
+                    <h3>Día 4: Microjuego ODS 15 y Dificultad (06/02/2026)</h3>
+                    <p><strong>Tareas Realizadas:</strong></p>
+                    <ul>
+                        <li><span style="color: #FF0055;">[Dev]</span> Implementación de <strong>"Forest Game"</strong>.
+                            <br><small style="color: #888;"><em>Asignado: Beatriz | Validado: Carlos | Rama:
+                                    features/microgame-forest</em></small>
+                        </li>
+                        <li><span style="color: #2979FF;">[Diseño]</span> <strong>Ajuste de Balance:</strong> Juego
+                            demasiado frenético.
+                            <br><small style="color: #888;"><em>Asignado: Carlos | Validado: Alejandro | Rama:
+                                    design/balance-pass</em></small>
+                        </li>
+                        <li><span style="color: #FF0055;">[Dev]</span> Aumento del tiempo base a 8 segundos.
+                            <br><small style="color: #888;"><em>Asignado: Alejandro | Validado: Carlos | Rama:
+                                    balance/timer-update</em></small>
+                        </li>
+                        <li><span style="color: #FF0055;">[Dev]</span> Implementación del sistema de dificultad (1->2->3
+                            items).
+                            <br><small style="color: #888;"><em>Asignado: Alejandro | Validado: Beatriz | Rama:
+                                    features/difficulty-scaling</em></small>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="doc-card">
+                    <h3>Día 5: Web y Entrega (07/02/2026)</h3>
+                    <p><strong>Tareas Realizadas:</strong></p>
+                    <ul>
+                        <li><span style="color: #2979FF;">[Web]</span> Integración del juego en una Landing Page
+                            responsive.
+                            <br><small style="color: #888;"><em>Asignado: Beatriz | Validado: Alejandro | Rama:
+                                    features/landing-page</em></small>
+                        </li>
+                        <li><span style="color: #2979FF;">[Web]</span> Redacción final del Ten Pages y Memoria.
+                            <br><small style="color: #888;"><em>Asignado: Carlos | Validado: Beatriz | Rama:
+                                    docs/final-memory</em></small>
+                        </li>
+                        <li><span style="color: #00E676;">[QA]</span> Validación final de la build.
+                            <br><small style="color: #888;"><em>Asignado: Alejandro | Validado: Carlos | Rama:
+                                    release/v1.0</em></small>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Proyecto Intermodular DAM - Curso 2025/2026</p>
+    </footer>
+
     <!-- Scripts -->
-    <script src="js/microgames/match-game.js"></script>
-    <script src="js/microgames/dodge-game.js"></script>
+    <script src="js/microgames/solar-game.js"></script>
+    <script src="js/microgames/water-game.js"></script>
+    <script src="js/microgames/forest-game.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        // Landing Page Logic (Simple inline script to handle transitions)
+        document.getElementById('btn-landing-play').addEventListener('click', function () {
+            document.querySelector('.hero-section').classList.add('hidden');
+            document.getElementById('docs').classList.add('hidden');
+            document.getElementById('memory').classList.add('hidden');
+            document.querySelector('.navbar').classList.add('hidden');
+
+            const gameSection = document.getElementById('game-section');
+            gameSection.classList.remove('hidden');
+            gameSection.scrollIntoView();
+
+            // Notify GameManager if needed, or just let it handle the internal Start
+        });
+
+        document.getElementById('btn-exit').addEventListener('click', function () {
+            location.reload(); // Simple way to return to main menu
+        });
+    </script>
 </body>
 
 </html>

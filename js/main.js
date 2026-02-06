@@ -1,4 +1,3 @@
-
 const STATE = {
     MENU: 'MENU',
     INTERMISSION: 'INTERMISSION',
@@ -20,10 +19,12 @@ class GameManager {
         this.timerMax = 0;
         this.timerCurrent = 0;
 
-        // Microgames
+        // Microgames (ODS Themed)
+        // Ensure scripts are loaded in index.html!
         this.microgames = [
-            new MatchGame(this.canvas),
-            new DodgeGame(this.canvas)
+            new WaterGame(this.canvas),
+            new SolarGame(this.canvas),
+            new ForestGame(this.canvas)
         ];
         this.currentMicrogame = null;
 
@@ -143,9 +144,11 @@ class GameManager {
         // Setup Game
         this.currentMicrogame.init(this.speedMultiplier, difficulty);
 
-        // Setup Timer based on Game requirement (defaulting if not returned)
-        // Some games might determine their own duration based on difficulty
-        const requestedDuration = this.currentMicrogame.duration || 5000;
+        // Setup Timer based on Game requirement
+        // Default only if game doesn't specify duration
+        let requestedDuration = this.currentMicrogame.duration || 5000;
+
+        // Speed multiplier affects timer too (faster game = less time)
         this.timerMax = requestedDuration / this.speedMultiplier;
         this.timerCurrent = this.timerMax;
 
@@ -211,7 +214,7 @@ class GameManager {
             this.ui.resultText.innerText = "¡BIEN!";
             this.ui.resultText.style.color = "#00FF00";
             this.score++;
-            this.speedMultiplier += 0.05; // Increase speed
+            this.speedMultiplier += 0.02; // Reduced from 0.05 for smoother curve
         } else {
             this.ui.resultText.innerText = "FAIL...";
             this.ui.resultText.style.color = "#FF0000";
@@ -230,5 +233,8 @@ class GameManager {
 
 // Start Game Manager when DOM is ready
 window.addEventListener('load', () => {
-    window.game = new GameManager();
+    // Only init game if we are on a page with gameCanvas (which we are)
+    if (document.getElementById('gameCanvas')) {
+        window.game = new GameManager();
+    }
 });
