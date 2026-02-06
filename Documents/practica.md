@@ -13,7 +13,7 @@ El proyecto servirá como iniciación al desarrollo colaborativo de una pieza de
 ## Parte 1. Explicación del proyecto
 
 ### Organización del trabajo
-- Grupos de **2 personas**.
+- Grupos de **3 personas**.
 - Cada grupo debe acordar el diseño y reparto de tareas.
 
 ---
@@ -23,10 +23,10 @@ El proyecto servirá como iniciación al desarrollo colaborativo de una pieza de
 ### Diseño de juego
 - Menú principal desde el que se accede al juego.
 - Al principio, el jugador dispone de **4 vidas**:
-- El juego principal que encadena **microjuegos**
+- El juego principal encadena **microjuegos**.
 > Videojuego de muy corta duración, con una única mecánica y objetivo que debe completarse en un tiempo limitado.
 - Cada fallo en un microjuego resta una vida.
-- Debe contener 6 microjuegos diferentes. 
+- Debe contener al menos 6 microjuegos diferentes. 
 - Al perder todas las vidas, el juego termina.
 - La puntuación aumenta con cada microjuego superado.
 
@@ -37,7 +37,7 @@ Cada microjuego debe cumplir los siguientes criterios:
 - Un objetivo único y claramente definido.
 - Un tiempo límite para completarlo.
 - Interacción directa mediante ratón y/o teclado.
-- Cada microjuego debe poder añadir variaciones para diferenciar **tres niveles de dificultad***, aumentando al superar los 10 y 20 puntos.
+- Cada microjuego debe poder añadir variaciones para diferenciar **tres niveles de dificultad**, aumentando al superar los 10 y 20 puntos.
 
 ---
 
@@ -70,14 +70,14 @@ Cada microjuego debe cumplir los siguientes criterios:
 Cada alumno debe asegurarse de tener:
 - Git instalado.
 - Una cuenta activa en GitHub.
-- Antigravity instalado.
+- El IDE instalado.
 
 ---
 
 ### 2. Creación del repositorio
-- Por parejas, cread un repositorio nuevo en GitHub.
-- Cada uno, clonad el repositorio en vuestro equipo, utilizando Antigravity.
-- Abre el proyecto usando el IDE de Antigravity.
+- Cada grupo debe crear un repositorio nuevo usando GitHub.
+- Cada uno, clonad el repositorio en vuestro equipo, utilizando el IDE.
+- Abre el proyecto en el IDE.
 
 ---
 
@@ -138,6 +138,7 @@ Es posible que debáis configurar un ***Personal Access Token***.
 - Un **commit** de dicha rama podria incluir el mensaje "se añade dificultad media" y describirse como "ahora caen menos gotas y más rápido a partir de los 10 puntos"
 
 ---
+
 ### Documentación
 - Todo el proceso debe documentarse e incluirse  en el repositorio y accederse en **diferentes apartados de la página web**.
 - Debe incluirse:
@@ -159,7 +160,7 @@ Deberéis entregar los links para acceder al producto final del proyecto: 
 
 ---
 
-## 5. Presentación
+## 5. Exposición
 - Debéis realizar una presentación en clase de formato libre.
 - Máximo 10 min.
 - Deberéis evaluar a vuestros compañeros durante las presentaciones utilizando una rúbrica que encontraréis en *Aules*. 
