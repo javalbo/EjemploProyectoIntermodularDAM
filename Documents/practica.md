@@ -5,57 +5,12 @@ marp: true
 # Práctica: Desarrollo colaborativo de un videojuego web usando metodologías ágiles
 
 ## Objetivo de la práctica
-Esta práctica sirve como iniciación al el desarrollo colaborativo de un proyecto software realista utilizando **GitHub como control de versiones**, **VS Code como entorno de desarrollo**, aplicando una organización basada en el método **KANBAN**.
+Esta práctica consiste en el desarrollo colaborativo de un videojuego y una página web utilizando IA, control de versiones y metodologías ágiles.
+El proyecto servirá como iniciación al desarrollo colaborativo de una pieza de software, emulando en clase un entorno de trabajo realista. Utilizaréis **GitHub como control de versiones**, **VS Code como entorno de desarrollo** y aplicaréis el método **KANBAN**.
 
 ---
 
-## Parte 1. Preparación del entorno de trabajo
-
-### 1. Configuración inicial
-Cada alumno debe asegurarse de tener:
-- Git instalado.
-- Una cuenta activa en GitHub.
-- Antigravity instalado.
-
----
-
-### 2. Creación del repositorio
-- Crea un repositorio nuevo en GitHub.
-- Clona el repositorio utilizando Antigravity.
-- Abre el proyecto usando el IDE de Antigravity.
-
----
-
-### 3. Configuración:
-- Instala extensión **Live Server** en el IDE para visualizar los cambios en tiempo real.
-- Configura **Git** desde la consola de VS Code:
- ```
- git config --global user.name "[username]"
- git config --global user.email "[your.email@example.com]"
- ```
-
----
-
-### 4. Primer contacto con el flujo de trabajo
-1. Crea un archivo de texto de prueba. Escribe en él, por ejemplo, tu nombre.
-2. Crea una rama de prueba.
-3. Para hacer *commit*:
- - Usa el apartado *Source Control* del IDE.
- - Selecciona los cambios (asegúrate de que contiene el archivo de texto).
- - Escribe un mensaje y descripción claros.
- - Haz *commit* para registrar los cambios.
-4. Una vez se haya procesado el commit, haz *push* para que se suba al repositorio. 
-
----
-
-### Configuración del Personal Access Token
-
-- Generar un **Personal Access Token** en GitHub (usando la plantilla sugerida).
-- Copiaremos el token (`ghp_…`) para pegarlo cuando el IDE se solicite.
-
----
-
-## Parte 2. Inicio del proyecto
+## Parte 1. Explicación del proyecto
 
 ### Organización del trabajo
 - Grupos de **2 personas**.
@@ -106,6 +61,52 @@ Cada microjuego debe cumplir los siguientes criterios:
 ### Temática del juego
 - Cada microjuego debe estar relacionado con uno o varios **Objetivos de Desarrollo Sostenible**.
 ![h:450](../imgs/ODS.jpg)
+
+---
+
+## Parte 2. Preparación del entorno de trabajo
+
+### 1. Configuración inicial
+Cada alumno debe asegurarse de tener:
+- Git instalado.
+- Una cuenta activa en GitHub.
+- Antigravity instalado.
+
+---
+
+### 2. Creación del repositorio
+- Por parejas, cread un repositorio nuevo en GitHub.
+- Cada uno, clonad el repositorio en vuestro equipo, utilizando Antigravity.
+- Abre el proyecto usando el IDE de Antigravity.
+
+---
+
+### 3. Configuración:
+- Instala extensión **Live Server** en el IDE para visualizar los cambios en tiempo real.
+- Configura **Git** desde el terminal:
+ ```
+ git config --global user.name "[username]"
+ git config --global user.email "[your.email@example.com]"
+ ```
+
+---
+
+### 4. Primer contacto con el flujo de trabajo
+1. Crea un archivo de texto de prueba. Escribe en él, por ejemplo, tu nombre.
+2. Crea una rama de prueba.
+3. Para hacer *commit*:
+ - Usa el apartado *Source Control* del IDE.
+ - Selecciona los cambios (asegúrate de que contiene el archivo de texto).
+ - Escribe un mensaje y descripción claros.
+ - Haz *commit* para registrar los cambios.
+4. Una vez se haya procesado el commit, haz *push* para que se suba al repositorio. 
+
+---
+
+### Configuración del Personal Access Token
+Es posible que debáis configurar un ***Personal Access Token***.
+- Generar un *Personal Access Token* en GitHub (usando la plantilla sugerida).
+- Copiaremos el token ("ghp_…") para pegarlo cuando el IDE se solicite.
 
 ---
 
