@@ -58,7 +58,7 @@ Cada alumno debe asegurarse de tener:
 ## Parte 2. Inicio del proyecto
 
 ### Organización del trabajo
-- Grupos de **4 personas**.
+- Grupos de **2 personas**.
 - Cada grupo debe acordar el diseño y reparto de tareas.
 
 ---
@@ -71,7 +71,7 @@ Cada alumno debe asegurarse de tener:
 - El juego principal que encadena **microjuegos**
 > Videojuego de muy corta duración, con una única mecánica y objetivo que debe completarse en un tiempo limitado.
 - Cada fallo en un microjuego resta una vida.
-- Debe contener 12 microjuegos diferentes. 
+- Debe contener 6 microjuegos diferentes. 
 - Al perder todas las vidas, el juego termina.
 - La puntuación aumenta con cada microjuego superado.
 
@@ -137,17 +137,17 @@ Cada microjuego debe cumplir los siguientes criterios:
 - Un **commit** de dicha rama podria incluir el mensaje "se añade dificultad media" y describirse como "ahora caen menos gotas y más rápido a partir de los 10 puntos"
 
 ---
-## Parte 4. Documentación
+### Documentación
 - Todo el proceso debe documentarse e incluir diferentes páginas web que expliquen cómo se ha hecho el proyecto
-- Ejemplos de documentación que debe incluirse:
-  - Definición del proyecto
-  - Explicación de la mecánica de los microjuegos
-  - Explicación de la organización del trabajo, quién ha hecho cada tarea, quién la ha validado, etc
-  - Incluir link a Trello y capturas de pantalla del mismo 
+- La documentación debe estar accesible en el repositorio de código y desde la página principal del producto final del proyecto. 
+- Documentación que debe incluirse:
+  - Definición del proyecto en un documento ***ten pages*** que incluya una explicación del juego y de la mecánica de cada microjuegos
+  - Una memoria de proyecto que incluya una explicación de la organización del trabajo, quién ha hecho cada tarea, quién la ha validado, capturas del tablero de Trello, etc.
+  - Incluir link a Trello. 
   
 ---
 
-## 5. Entrega
+## 4. Entrega
 // Esto lo dejaría para después de hecho el proyecto
 - Activar **GitHub Pages**:
    - Rama: `main`
@@ -160,7 +160,7 @@ Deberéis entregar los links para acceder al producto final del proyecto: 
 
 ---
 
-## 6. Ampliación (opcional)
+## 5. Ampliación (opcional y no evaluable)
 - Investigar el uso de un servidor para permitir la competición entre varios jugadores:
   - Ranking de puntuaciones.
   - Resultados compartidos.
