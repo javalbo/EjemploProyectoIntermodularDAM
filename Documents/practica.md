@@ -1,5 +1,5 @@
 ---
-marp: true
+marp: false
 ---
 
 # Práctica: Desarrollo colaborativo de un videojuego web usando metodologías ágiles
@@ -13,7 +13,7 @@ El proyecto servirá como iniciación al desarrollo colaborativo de una pieza de
 ## Parte 1. Explicación del proyecto
 
 ### Organización del trabajo
-- Grupos de **3 personas**.
+- Grupos de **2 ó 3 personas**.
 - Cada grupo debe acordar el diseño y reparto de tareas.
 
 ---
@@ -26,7 +26,13 @@ El proyecto servirá como iniciación al desarrollo colaborativo de una pieza de
 - El juego principal encadena **microjuegos**.
 > Videojuego de muy corta duración, con una única mecánica y objetivo que debe completarse en un tiempo limitado.
 - Cada fallo en un microjuego resta una vida.
-- Debe contener al menos 6 microjuegos diferentes. 
+
+---
+
+### Diseño de juego
+
+- Debe contener al menos 3 microjuegos por integrante:
+  - Un total de 6 en los proyectos desarrollados por parejas y 9 para grupos de 3. 
 - Al perder todas las vidas, el juego termina.
 - La puntuación aumenta con cada microjuego superado.
 
@@ -61,6 +67,13 @@ Cada microjuego debe cumplir los siguientes criterios:
 ### Temática del juego
 - Cada microjuego debe estar relacionado con uno o varios **Objetivos de Desarrollo Sostenible**.
 ![h:450](../imgs/ODS.jpg)
+
+---
+
+### Ejemplo de proyecto
+>https://github.com/javalbo/EjemploProyectoIntermodularDAM/
+
+>https://javalbo.github.io/ProyectoIntermodularDAM/
 
 ---
 
@@ -161,6 +174,8 @@ Deberéis entregar los links para acceder al producto final del proyecto: 
 ---
 
 ## 5. Exposición
+
+Para evaluar esta actividad, deberéis realizar una exposición final de máximo 10 minutos, en la que explicaréis el desarrollo y producto final del proyecto. 
 - Debéis realizar una presentación en clase de formato libre.
 - Máximo 10 min.
 - Deberéis evaluar a vuestros compañeros durante las presentaciones utilizando una rúbrica que encontraréis en *Aules*. 
