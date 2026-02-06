@@ -138,9 +138,8 @@ Cada microjuego debe cumplir los siguientes criterios:
 
 ---
 ### Documentación
-- Todo el proceso debe documentarse e incluir diferentes páginas web que expliquen cómo se ha hecho el proyecto
-- La documentación debe estar accesible en el repositorio de código y desde la página principal del producto final del proyecto. 
-- Documentación que debe incluirse:
+- Todo el proceso debe documentarse e incluirse  en el repositorio y accederse en **diferentes apartados de la página web**.
+- Debe incluirse:
   - Definición del proyecto en un documento ***ten pages*** que incluya una explicación del juego y de la mecánica de cada microjuegos
   - Una memoria de proyecto que incluya una explicación de la organización del trabajo, quién ha hecho cada tarea, quién la ha validado, capturas del tablero de Trello, etc.
   - Incluir link a Trello. 
@@ -148,7 +147,6 @@ Cada microjuego debe cumplir los siguientes criterios:
 ---
 
 ## 4. Entrega
-// Esto lo dejaría para después de hecho el proyecto
 - Activar **GitHub Pages**:
    - Rama: `main`
    - Carpeta: raíz del proyecto.
@@ -160,9 +158,16 @@ Deberéis entregar los links para acceder al producto final del proyecto: 
 
 ---
 
-## 5. Ampliación (opcional y no evaluable)
+## 5. Presentación
+- Debéis realizar una presentación en clase de formato libre.
+- Máximo 10 min.
+- Deberéis evaluar a vuestros compañeros durante las presentaciones utilizando una rúbrica que encontraréis en *Aules*. 
+
+---
+
+## 6. Ampliación (opcional y no evaluable)
 - Investigar el uso de un servidor para permitir la competición entre varios jugadores:
-  - Ranking de puntuaciones.
-  - Resultados compartidos.
-  - Multijugador básico.
-  - Crear elementos gráficos y añadirlos al juego. 
+- Ranking de puntuaciones.
+- Resultados compartidos.
+- Multijugador básico.
+- Crear elementos gráficos y añadirlos al juego. 
