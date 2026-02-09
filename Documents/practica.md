@@ -12,7 +12,7 @@ footer: This work is licensed under <a href="https://creativecommons.org/license
 
 <style>
   h1 {
-    color: #42b1ff;
+    color: #ef6ddb;
     font-family: 'Public Pixel';
     text-align: center;
     text-shadow: 
@@ -23,7 +23,7 @@ footer: This work is licensed under <a href="https://creativecommons.org/license
        2px 2px 0 #00192e;
   }
   h2 {
-    color: #acf0ff;
+    color: #5fb6ff;
     font-family: 'Public Pixel';
     text-shadow: 
       4px 4px 0 #00192e,
@@ -33,7 +33,7 @@ footer: This work is licensed under <a href="https://creativecommons.org/license
        2px 2px 0 #00192e;
   }
   h3 {
-    color: #00192e;
+    color: #00549c;
     font-family: 'Public Pixel';
   }
 </style>
