@@ -5,7 +5,7 @@ backgroundImage: url("../imgs/bg.png")
 backgroundSize: cover
 backgroundPosition: center
 
-footer: This work is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
+footer: SERIOUS GAMES POR UN DESARROLLO SOSTENIBLE. Javier Albors Caño. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
 
 
 ---
