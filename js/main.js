@@ -27,6 +27,7 @@ class GameManager {
             new ForestGame(this.canvas)
         ];
         this.currentMicrogame = null;
+        this.lastMicrogame = null; // Track last played game
 
         // UI Elements
         this.ui = {
@@ -59,6 +60,7 @@ class GameManager {
         this.lives = 4;
         this.score = 0;
         this.speedMultiplier = 1.0;
+        this.lastMicrogame = null; // Reset history on new game
         this.switchState(STATE.INTERMISSION);
     }
 
@@ -124,8 +126,16 @@ class GameManager {
     }
 
     startRandomMicrogame() {
-        // Pick random game
-        this.currentMicrogame = this.microgames[Math.floor(Math.random() * this.microgames.length)];
+        // Pick random game loop, ensuring no immediate repetition if possible
+        let availableGames = this.microgames;
+
+        // If we have more than 1 game, filter out the last one
+        if (this.microgames.length > 1 && this.lastMicrogame) {
+            availableGames = this.microgames.filter(g => g !== this.lastMicrogame);
+        }
+
+        this.currentMicrogame = availableGames[Math.floor(Math.random() * availableGames.length)];
+        this.lastMicrogame = this.currentMicrogame; // Update history
 
         // Determine Difficulty config
         let difficulty = {
