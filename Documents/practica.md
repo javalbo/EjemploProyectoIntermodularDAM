@@ -190,14 +190,17 @@ Es posible que debáis configurar un ***Personal Access Token***.
 
 ### Control de versiones
 - Al comenzar una tarea se debe:
-  1. **Asignarla en Trello** al integrante del grupo correspondiente y pasarla de la columna *backlog* a *in progress*.
-  2. **Crear una rama** con el esquema: "features/[nombre-de-la-tarea]"
-  3. Realizar los cambios necesarios.
+1. **Asignarla en Trello** al integrante del grupo correspondiente y pasarla de la columna *backlog* a *in progress*.
+2. **Crear una rama** con el esquema: "features/[nombre-de-la-tarea]"
+3. Realizar los cambios necesarios.
+
+---
+
+### Control de versiones
   4. **Hacer commit** cada vez que se añadan *cambios significativos* en la funcionalidad.
   5. Al terminar la tarea, se debe mover a tarea a la columna *validate*.
   6. Otro integrante debe validarla, comprobando que no haya problemas de funcionalidad haciendo merge de *main* en la rama de desarrollo.
   7. Una vez validada, se debe hacer merge de la rama de desarrollo a *main* y se mueve la tarea a *done*.
-
 
 ---
 
