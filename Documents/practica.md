@@ -5,8 +5,7 @@ backgroundImage: url("../imgs/bg.png")
 backgroundSize: cover
 backgroundPosition: center
 
-footer: SERIOUS GAMES POR UN DESARROLLO SOSTENIBLE. Javier Albors Caño. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>
-
+footer: SERIOUS GAMES POR UN DESARROLLO SOSTENIBLE. Javier Albors Caño. This work is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
 
 ---
 
@@ -42,7 +41,6 @@ Esta práctica consiste en el desarrollo colaborativo de un videojuego y una pá
 El proyecto servirá como iniciación al desarrollo colaborativo de una pieza de software, emulando en clase un entorno de trabajo realista. 
 Utilizaréis **GitHub como control de versiones**, **VS Code como entorno de desarrollo** y aplicaréis el método **KANBAN**.
 
-
 ---
 
 ## Parte 1. Explicación del proyecto
@@ -50,7 +48,6 @@ Utilizaréis **GitHub como control de versiones**, **VS Code como entorno de des
 ### Organización del trabajo
 - Grupos de **2 ó 3 personas**.
 - Cada grupo debe acordar el diseño y reparto de tareas.
-
 
 ---
 
@@ -63,7 +60,6 @@ Utilizaréis **GitHub como control de versiones**, **VS Code como entorno de des
 > Videojuego de muy corta duración, con una única mecánica y objetivo que debe completarse en un tiempo limitado.
 - Cada fallo en un microjuego resta una vida.
 
-
 ---
 
 ### Diseño de juego
@@ -73,7 +69,6 @@ Utilizaréis **GitHub como control de versiones**, **VS Code como entorno de des
 - Al perder todas las vidas, el juego termina.
 - La puntuación aumenta con cada microjuego superado.
 
-
 ---
 
 ### Microjuegos
@@ -82,7 +77,6 @@ Cada microjuego debe cumplir los siguientes criterios:
 - Un tiempo límite para completarlo.
 - Interacción directa mediante ratón y/o teclado.
 - Cada microjuego debe poder añadir variaciones para diferenciar **tres niveles de dificultad**, aumentando al superar los 10 y 20 puntos.
-
 
 ---
 
@@ -94,7 +88,6 @@ Cada microjuego debe cumplir los siguientes criterios:
 - Al fallar el microjuego, el jugador pierde una vida. Si todavía conserva alguna vida, continúa al siguiente microjuego.
 - Al completar exitosamente, aumenta el contador.
 
-
 ---
 
 ### Microjuegos
@@ -102,21 +95,19 @@ Cada microjuego debe cumplir los siguientes criterios:
 - Al superar los 20 puntos, la dificultad debe volver a aumentar. 
 > Para aumentar la dificultad, por ejemplo, el vaso puede ser sensiblemente más profundo o estrecho, las gotas de agua más escasas o rápidas y el tiempo para recoger agua más corto.
 
-
 ---
 
 ### Temática del juego
 - Cada microjuego debe estar relacionado con uno o varios **Objetivos de Desarrollo Sostenible**.
 ![h:450](../imgs/ODS.png)
 
-
 ---
 
 ### Ejemplo de proyecto
->https://github.com/javalbo/EjemploProyectoIntermodularDAM/
-
->https://javalbo.github.io/ProyectoIntermodularDAM/
-
+Repositorio: 
+[github.com/javalbo/ProyectoIntermodularDAM](https://github.com/javalbo/ProyectoIntermodularDAM/)
+GitHub Pages: 
+[javalbo.github.io/ProyectoIntermodularDAM](https://javalbo.github.io/ProyectoIntermodularDAM/)
 
 ---
 
@@ -128,7 +119,6 @@ Cada alumno debe asegurarse de tener:
 - Una cuenta activa en GitHub.
 - El IDE instalado.
 
-
 ---
 
 ### 2. Creación del repositorio
@@ -136,10 +126,9 @@ Cada alumno debe asegurarse de tener:
 - Cada uno, clonad el repositorio en vuestro equipo, utilizando el IDE.
 - Abre el proyecto en el IDE.
 
-
 ---
 
-### 3. Configuración:
+### 3. Configuración
 - Instala extensión **Live Server** en el IDE para visualizar los cambios en tiempo real.
 - Configura **Git** desde el terminal:
  ```
@@ -147,12 +136,11 @@ Cada alumno debe asegurarse de tener:
  git config --global user.email "[your.email@example.com]"
  ```
 
-
 ---
 
 ### 4. Primer contacto con el flujo de trabajo
-1. Crea un archivo de texto de prueba. Escribe en él, por ejemplo, tu nombre.
-2. Crea una rama de prueba.
+1. Crea una rama con el nombre, por ejemplo "prueba-[tus iniciales]".
+2. Crea un archivo de texto de prueba. Escribe en él, por ejemplo, tu nombre.
 3. Para hacer *commit*:
  - Usa el apartado *Source Control* del IDE.
  - Selecciona los cambios (asegúrate de que contiene el archivo de texto).
@@ -160,6 +148,9 @@ Cada alumno debe asegurarse de tener:
  - Haz *commit* para registrar los cambios.
 4. Una vez se haya procesado el commit, haz *push* para que se suba al repositorio. 
 
+---
+
+5. Crea una pull request
 
 ---
 
@@ -167,7 +158,6 @@ Cada alumno debe asegurarse de tener:
 Es posible que debáis configurar un ***Personal Access Token***.
 - Generar un *Personal Access Token* en GitHub (usando la plantilla sugerida).
 - Copiaremos el token ("ghp_…") para pegarlo cuando el IDE se solicite.
-
 
 ---
 
@@ -179,7 +169,6 @@ Es posible que debáis configurar un ***Personal Access Token***.
 - Crear las tareas esperables a partir del documento de diseño en el backlog. 
 - Diario de desarrollo: Incluid información sobre el trello, reparto de tareas, progreso y dificultades en el desarrollo etc. 
 
-
 ---
 
 ### Control de versiones
@@ -187,11 +176,12 @@ Es posible que debáis configurar un ***Personal Access Token***.
 1. **Asignarla en Trello** al integrante del grupo correspondiente y pasarla de la columna *backlog* a *in progress*.
 2. **Crear una rama** con el esquema: "features/[nombre-de-la-tarea]"
 3. Realizar los cambios necesarios.
+4. **Hacer commit** cada vez que se añadan *cambios significativos* en la funcionalidad.
+
 
 ---
 
 ### Control de versiones
-  4. **Hacer commit** cada vez que se añadan *cambios significativos* en la funcionalidad.
   5. Al terminar la tarea, se debe mover a tarea a la columna *validate*.
   6. Otro integrante debe validarla, comprobando que no haya problemas de funcionalidad haciendo merge de *main* en la rama de desarrollo.
   7. Una vez validada, se debe hacer merge de la rama de desarrollo a *main* y se mueve la tarea a *done*.
@@ -203,7 +193,6 @@ Es posible que debáis configurar un ***Personal Access Token***.
 - La **rama** en la que se desarrollará deberia llamarse "feartures/microjuego-no-malgastes-agua"
 - Un **commit** de dicha rama podria incluir el mensaje "se añade dificultad media" y describirse como "ahora caen menos gotas y más rápido a partir de los 10 puntos"
 
-
 ---
 
 ### Documentación
@@ -213,7 +202,6 @@ Es posible que debáis configurar un ***Personal Access Token***.
   - Una memoria de proyecto que incluya una explicación de la organización del trabajo, quién ha hecho cada tarea, quién la ha validado, capturas del tablero de Trello, etc.
   - Incluir link a Trello. 
 
-  
 ---
 
 ## 4. Entrega
@@ -226,7 +214,6 @@ Deberéis entregar los links para acceder al producto final del proyecto: 
 - Página web y juego en github pages
 - Repositorio de código público
 
-
 ---
 
 ## 5. Exposición
@@ -235,7 +222,6 @@ Para poder evaluar esta actividad, deberéis realizar una exposición final de m
 - Debéis realizar una presentación en clase de formato libre.
 - Máximo 10 min.
 - Deberéis evaluar a vuestros compañeros durante las presentaciones utilizando una rúbrica que encontraréis en *Aules*. 
-
 
 ---
 
@@ -248,9 +234,7 @@ La nota de esta actividad se calculará a partir de los siguientes apartados:
 
 > Ambos apartados de la nota se calificarán a partir de la misma rúbrica, que encontraréis en Aules y en el repositorio de ejemplo. 
 
-
 ---
-
 
 ## 7. Ampliación (opcional y no evaluable)
 - Investigar el uso de un servidor para permitir la competición entre varios jugadores:
