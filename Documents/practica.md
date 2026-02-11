@@ -39,7 +39,7 @@ footer: SERIOUS GAMES POR UN DESARROLLO SOSTENIBLE. Javier Albors Caño. This wo
 ## Objetivo de la práctica
 Esta práctica consiste en el desarrollo colaborativo de un videojuego y una página web, a través de metodologías ágiles, utilizando herramientas de control de versiones e IA integrada en el entorno de desarrollo para agilizar la generación de código.
 El proyecto servirá como iniciación al desarrollo colaborativo de una pieza de software, emulando en clase un entorno de trabajo realista. 
-Utilizaréis **GitHub como control de versiones**, **VS Code como entorno de desarrollo** y aplicaréis el método **KANBAN**.
+Utilizaréis **Git como herramienta de control de versiones**, y aplicaréis el método **KANBAN**.
 
 ---
 
@@ -48,6 +48,7 @@ Utilizaréis **GitHub como control de versiones**, **VS Code como entorno de des
 ### Organización del trabajo
 - Grupos de **2 ó 3 personas**.
 - Cada grupo debe acordar el diseño y reparto de tareas.
+- Desarrollaréis un videojuego web incrustado en una página. 
 
 ---
 
@@ -139,18 +140,32 @@ Cada alumno debe asegurarse de tener:
 ---
 
 ### 4. Primer contacto con el flujo de trabajo
-1. Crea una rama con el nombre, por ejemplo "prueba-[tus iniciales]".
+1. Crea una ***branch*** (rama) de nombre, por ejemplo, "prueba-[tus iniciales]".
 2. Crea un archivo de texto de prueba. Escribe en él, por ejemplo, tu nombre.
-3. Para hacer *commit*:
+3. Para publicar los cambios:
  - Usa el apartado *Source Control* del IDE.
  - Selecciona los cambios (asegúrate de que contiene el archivo de texto).
  - Escribe un mensaje y descripción claros.
- - Haz *commit* para registrar los cambios.
-4. Una vez se haya procesado el commit, haz *push* para que se suba al repositorio. 
+ - Haz ***commit*** para registrar los cambios.
+ - Haz ***push*** para publicar los cambios. 
 
 ---
 
-5. Crea una pull request
+### Primer contacto con el flujo de trabajo
+4. Para mezclar cambios definitivos en la rama principal:
+  - Debes asegurarte de que has implementado todos los cambios planeados y funcionan correctamente. 
+  - Crea una ***pull request*** de tu rama a main. Asegúrate de que añades una descripción de la funcionalidad añadida. 
+  - **Otro integrante** del grupo deberá confirmar que **no haya conflictos** y el programa funcione correctamente. 
+  - Una vez validado, deberá proceder al ***merge***.
+
+---
+
+### Ciclo del flujo de trabajo
+Para cada tarea o funcionalidad desarrollada: 
+1. Crear una ***branch*** al comenzar una tarea o *funcionalidad*.
+2. Hacer los cambios necesarios. Publícalos cada vez que tengas un avance significativo (***commit***).
+3. Cuando la funcionalidad esté completa, crea una ***pull request***. 
+4. Un compañero/a deberá validar los cambios y proceder a mezclarlos en la rama principal (***merge***). 
 
 ---
 
